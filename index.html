@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>일본어 드라이브</title>
+<meta name="theme-color" content="#1f59b2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="일본어 드라이브">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app"></div>
+<div id="toast"></div>
+<div id="modal" hidden><div class="modal-box"><div id="modal-body"></div><button id="modal-ok" class="btn primary">다음</button></div></div>
+<script src="data.js"></script>
+<script src="core.js"></script>
+<script src="screens.js"></script>
+<script src="quiz.js"></script>
+<script src="listen.js"></script>
+<script>
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+  App.home();
+</script>
+</body>
+</html>
