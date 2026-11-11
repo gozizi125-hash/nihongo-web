@@ -11,6 +11,7 @@ const App = {
       ${btn('phrases', '🗣️ 회화 공부 (' + D.P.length + ')')}
       ${btn('grammar', '📚 문법 공부 (' + D.G.length + ')')}
       ${btn('confusing', '🔀 헷갈리는 표현 (' + cats(D.C).length + ')')}
+      ${btn('challenge', '⏱️ 읽기 챌린지 (릴스 퀴즈)')}
       ${btn('quiz', '📝 단어·문장 퀴즈')}
       ${btn('review', '🔥 오답노트')}
       ${btn('fav', '⭐ 즐겨찾기')}
@@ -23,6 +24,7 @@ const App = {
       phrases: () => App.catList(D.P, '🗣️ 회화 공부'),
       grammar: () => App.grammarList(),
       confusing: () => App.confusingList(),
+      challenge: () => App.challengeSetup(),
       quiz: () => App.quizSetup(),
       review: () => App.review(),
       fav: () => App.favorites(),

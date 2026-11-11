@@ -39,3 +39,15 @@ canvas { width:100%; aspect-ratio:1; background:#fff; border:1px solid #e2e8f2; 
 .modal-box { background:#fff; border-radius:16px; padding:20px; width:100%; max-width:420px; font-size:18px; line-height:1.6; }
 .now { background:#eaf1fc; border-color:#c5d6f2; }
 .stat { font-size:18px; margin:4px 0; }
+
+/* 읽기 챌린지 */
+.stage { background:#f6efe6; border-radius:18px; padding:22px 16px 24px; margin:8px 0 10px; text-align:center; color:#1c1c2c; }
+.stage .sub, .stage .kana, .stage .pron { text-align:center; }
+.ch-title { font-family:"Snell Roundhand","Bradley Hand","Segoe Print",Georgia,serif; font-style:italic; font-weight:700; font-size:22px; }
+.ch-word { font-weight:700; line-height:1.2; margin:18px 0 10px; word-break:keep-all; overflow-wrap:anywhere; }
+.ch-circle { width:110px; height:110px; margin:12px auto 0; border:4px solid #1c1c2c; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:46px; font-weight:700; }
+.ch-roma { color:#c44c2e; font-family:Georgia,serif; font-style:italic; font-size:24px; margin-top:6px; }
+.ch-ko { font-size:26px; font-weight:700; margin:6px 0 12px; }
+.ch-emoji { font-size:56px; margin-top:10px; }
+.ch-pic { width:170px; height:150px; margin:6px auto 0; background:#fff; border-radius:16px; box-shadow:0 8px 18px rgba(0,0,0,.12); display:flex; align-items:center; justify-content:center; font-size:68px; }
+.big2 .btn { font-size:19px; padding:18px 6px; }
