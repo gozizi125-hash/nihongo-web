@@ -4,6 +4,10 @@ const CAT_EMOJI = { '숫자': '🔢', '시간·날짜': '🕒', '요일·달·�
   '학교·공부': '📚', '직장·일': '💼', '쇼핑·돈': '🛍️', '취미·운동': '⚽', '동사(기본)': '🏃', '동사(생활)': '🧺', 'い형용사': '✨', 'な형용사': '💫',
   '부사': '➡️', '의문사·지시어': '❓', '접속사·기타': '🔗', '위치·방향': '🧭', '인사·기본': '👋', '자기소개': '🙋', '식당·카페': '🍽️', '쇼핑': '🛒',
   '길 묻기': '🗺️', '교통·이동': '🚕', '호텔·숙소': '🏨', '공항·여행': '✈️', '병원·약국': '🏥', '일상 대화': '💬', '감정·반응': '😊', '날씨·시간': '⛅' };
+const picsOf = it => ((D.pics || {})[it.kana + '|' + it.disp] || (D.catpics || {})[it.cat] || (D.catpics || {})._default || '').split(',').filter(Boolean);
+// 3D 그림 (1~2장), 그림이 없으면 이모지 글자
+const picHtml = (it, px) => { const f = picsOf(it); const s = f.length > 1 ? Math.round(px * .75) : px;
+  return f.length ? f.map(n => `<img src="pics/${n}.webp" width="${s}" height="${s}" alt="" onerror="this.replaceWith(document.createTextNode('${emojiOf(it)}'))">`).join('') : emojiOf(it); };
 const emojiOf = it => (D.emoji || {})[it.kana + '|' + it.disp] || CAT_EMOJI[it.cat] || '🇯🇵';
 
 // 가나 → 로마자 (a-tsu-i)
@@ -77,7 +81,7 @@ Object.assign(App, {
     const it = CH.pool[CH.at], gen = ++CH.gen;
     const q = CH.mode === 2 ? it.ko : CH.mode === 1 ? it.disp : it.kana;
     render(`<h1>⏱️ 읽기 챌린지</h1><div class="stage">${chHead()}
-        ${CH.mode === 2 ? `<div class="ch-emoji">${emojiOf(it)}</div>` : ''}
+        ${CH.mode === 2 ? `<div class="ch-emoji">${picHtml(it, 120)}</div>` : ''}
         <div class="ch-word" style="font-size:${chSize(q, CH.mode === 2)}px">${esc(q)}</div>
         <div class="ch-circle" id="cd">${CH.sec}</div></div>
       ${btn('show', '👀 바로 정답 보기')}${btn('stop', '■ 그만하기')}`, {
@@ -103,7 +107,7 @@ Object.assign(App, {
         ${it.type !== 'p' ? `<div class="ch-roma">(${esc(romaji(it.kana))})</div>` : ''}
         <div class="pron center">[${esc(it.pron)}]</div>
         <div class="ch-ko">${esc(it.ko)}</div>
-        <div class="ch-pic">${emojiOf(it)}</div></div>
+        <div class="ch-pic">${picHtml(it, 130)}</div></div>
       <div class="row big2">${btn('no', '❌ 몰랐어')}${btn('yes', '⭕ 알았어')}</div>
       <div class="row">${btn('say', '🔊 다시 듣기')}${btn('fav', Store.isFav(it.key) ? '★ 저장됨' : '☆ 즐겨찾기')}</div>
       ${btn('stop', '■ 그만하기')}

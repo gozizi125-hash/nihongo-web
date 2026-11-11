@@ -18,12 +18,15 @@ kana = {}
 for name in ['BASIC', 'DAKUTEN', 'YOON']:
     body = re.search(name + r' = \{(.*?)\n  \};', src, re.S).group(1)
     kana[name.lower()] = re.findall(r'\{"([^"]*)","([^"]*)","([^"]*)"\}', body)
-emoji = {}
+emoji, pics, catpics = {}, {}, {}
+if os.path.exists(os.path.join(assets, 'cat_pics.tsv')):
+    for c in rows('cat_pics.tsv'): catpics[c[0]] = c[1]
 ep = os.path.join(assets, 'emoji.tsv')
 if os.path.exists(ep):
     for c in rows('emoji.tsv'):
         if len(c) >= 3 and c[2]: emoji[c[0] + '|' + c[1]] = c[2]
-data = {'emoji': emoji, 'words': words, 'phrases': phrases, 'confusing': confusing, 'grammar': grammar, 'kana': kana}
+        if len(c) >= 4 and c[3]: pics[c[0] + '|' + c[1]] = c[3]
+data = {'emoji': emoji, 'pics': pics, 'catpics': catpics, 'words': words, 'phrases': phrases, 'confusing': confusing, 'grammar': grammar, 'kana': kana}
 with open(OUT, 'w', encoding='utf-8') as f:
     f.write('window.DATA=' + json.dumps(data, ensure_ascii=False, separators=(',', ':')) + ';\n')
 print(len(words), len(phrases), len(confusing), len(grammar), {k: len(v) for k, v in kana.items()})

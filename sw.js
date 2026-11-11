@@ -1,5 +1,5 @@
 // 오프라인 캐시: 새 버전이 올라오면 VERSION만 바꾸면 됨
-const VERSION = 'v3';
+const VERSION = 'v4';
 const FILES = ['./', 'index.html', 'style.css', 'data.js', 'core.js', 'screens.js', 'quiz.js', 'listen.js', 'challenge.js', 'manifest.json', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(VERSION).then(c => c.addAll(FILES))); self.skipWaiting(); });
 self.addEventListener('activate', e => {
